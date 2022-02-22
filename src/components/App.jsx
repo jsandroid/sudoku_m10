@@ -50,7 +50,6 @@ async function getGame(difficulty) {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
     const secData = await secResp.json()
-    var t = 0
     if (secData.solution) {
       const game = buildGame(firstData.board, secData.solution, difficulty)
       return game;

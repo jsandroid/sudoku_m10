@@ -58,6 +58,7 @@ async function getGame(difficulty) {
   }
   return null;
 }
+
 function initialGameState(difficulty) {
   return({
       gameboard: [],
@@ -100,7 +101,16 @@ function App() {
       produce(gameState => {
         //update state with incoming cell val
         gameState.gameboard[e.row].col[e.col].value = e.value;
+        gameState.rawGameboard[e.flattenIndex] = e.value
+
         //check to see if board is correct now given val change
+        var checkIfSolved = true;
+        for(var i = 0; i < gameState.solvedGame.length; i++) {
+          if(gameState.rawGameboard[i] !== gameState.solvedGame[i]) {
+            checkIfSolved = false;
+          }
+        }
+        gameState.gameSolved = checkIfSolved;
 
         //check to see if input val is correct for game
         const correct = (e.value === gameState.solvedGame[e.flattenIndex])
@@ -147,6 +157,11 @@ function App() {
           </Backdrop>
           :
           <Grid container direction='column' alignContent='center' alignItems='center' justifyContent='center'>
+            {(gameState.gameSolved) ? 
+              <Grid item paddingBottom='15px'>
+                <Typography variant='h3'>Congratulations on Solving the game!</Typography>
+              </Grid> 
+            : <Grid></Grid> }
             <Grid item paddingBottom='15px'>
               <Board game={gameState} action={handleChange} />
             </Grid>

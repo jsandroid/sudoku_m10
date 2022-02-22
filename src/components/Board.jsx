@@ -9,17 +9,15 @@ export default function Board({ game, action }) {
     <div id='gameboard'>
       <Grid direction='column' alignContent='center' container>
         {game?.gameboard.map((row, rowIndex) => (
-          <Grid direction='row' container key={()=> uuidv4()}> 
+          <Grid direction='row' container key={uuidv4()}> 
             {row?.col?.map((cell, colIndex) => (
-              <Grid item key={()=> uuidv4()}>
+              <Grid item key={uuidv4()}>
                 <SudokuCell cell={cell} update={action}/>
               </Grid>
             ))}
           </Grid>
-        ))}
-        
+        ))}        
       </Grid>
-
     </div>
   );
 }

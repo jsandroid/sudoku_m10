@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "M10 Sudoku",
+  "name": "Interview Project - M10 Sudoku",
   "icons": [
     {
       "src": "favicon.ico",
